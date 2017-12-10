@@ -47,9 +47,6 @@ public class Sorts{
   }
 
   public static void insertionSort(int[] data){
-    //  int[] sorted;
-    //  sorted = new int[data.length];
-
     for (int i = 0; i < data.length; i++){
       for (int x = i; x > 0; x--){
         if (data[x] < data[x - 1]){
@@ -61,6 +58,21 @@ public class Sorts{
 
   }
 
+  public static void bubbleSort(int[] data){
+    for (int i = 0; i < data.length; i++){
+      int swaps = 0;
+      for (int x = 0; x < data.length - i - 1; x++){
+        if (data[x] > data[x + 1]){
+          swap(data, x, x + 1);
+          swaps++;
+        }
+      }
+      if (swaps == 0){
+        i = data.length;
+      }
+    }
+  }
+
   private static void swap(int[] data, int a, int b){
     int c = data[a];
     data[a] = data[b];
@@ -68,14 +80,15 @@ public class Sorts{
   }
 
   public static void main(String[] args){
-    int[] randish = new int[5];
+    int[] randish = new int[15];
 
     for (int i = 0; i < randish.length; i++){
       randish[i] = (int)(Math.random()*100);
     }
 
     System.out.println(Arrays.toString(randish));
-    insertionSort(randish);
+    bubbleSort(randish);
+    // insertionSort(randish);
     // selectionSort(randish);
     // bogoSort(randish);
     System.out.println(Arrays.toString(randish));
