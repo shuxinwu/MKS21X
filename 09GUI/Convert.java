@@ -5,20 +5,30 @@ import java.awt.event.*;
 public class Convert extends JFrame implements ActionListener{
   private Container pane;
   private JButton b1, b2;
-  private JTextField t;
+  private JTextField t1, t2;
 
   public void actionPerformed(ActionEvent e){
     String s = e.getActionCommand();
-    if(s.equals("F to C")){
+    String text = t1.getText();
+    double d = Double.parseDouble(text);
+    System.out.println(s);
+    System.out.println(text);
+    System.out.println(d);
 
+    if (s.equals("F to C")){
+      String v = String.valueOf(FtoC(d));
+      t2.setText(v);
     }
-
+    else{
+      String v = String.valueOf(CtoF(d));
+      t2.setText(v);
+    }
   }
 
   public Convert(){
     this.setTitle("Converting...");
-    this.setSize(400, 500);
-    this.setLocation(100, 100);
+    this.setSize(200, 200);
+    this.setLocation(800, 100);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     pane = this.getContentPane();
