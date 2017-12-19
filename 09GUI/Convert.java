@@ -27,7 +27,7 @@ public class Convert extends JFrame implements ActionListener{
 
   public Convert(){
     this.setTitle("Converting...");
-    this.setSize(200, 200);
+    this.setSize(600, 150);
     this.setLocation(800, 100);
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -35,8 +35,8 @@ public class Convert extends JFrame implements ActionListener{
     pane.setLayout(new FlowLayout());
     b1 = new JButton("F to C");
     b2 = new JButton("C to F");
-    t1 = new JTextField(15);
-    t2 = new JTextField(15);
+    t1 = new JTextField(50);
+    t2 = new JTextField(50);
 
     b1.addActionListener(this);
     b2.addActionListener(this);
