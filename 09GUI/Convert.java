@@ -11,9 +11,9 @@ public class Convert extends JFrame implements ActionListener{
     String s = e.getActionCommand();
     String text = t1.getText();
     double d = Double.parseDouble(text);
-    System.out.println(s);
-    System.out.println(text);
-    System.out.println(d);
+    //    System.out.println(s);
+    //    System.out.println(text);
+    //    System.out.println(d);
 
     if (s.equals("F to C")){
       String v = String.valueOf(FtoC(d));
@@ -46,6 +46,8 @@ public class Convert extends JFrame implements ActionListener{
     pane.add(b1);
     pane.add(b2);
     pane.add(t2);
+
+    t2.setEditable(false);
 
   }
 
