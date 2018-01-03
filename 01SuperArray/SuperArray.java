@@ -7,163 +7,176 @@ public class SuperArray{
     data = new String[10];
   }
 
-  public SuperArray(int startingCapacity){
-    data = new String[startingCapacity];
-  }
+  // phase 1
 
   public void clear(){
-    for (int x = 0; x < data.length; x++){
-      data[x] = null;
+    for (int i = 0; i < data.length; i++){
+      data[i] = null;
     }
   }
 
   public int size(){
-    return size;
-  }
-
-  public String[] getData(){
-    return data;
-  }
-
-  public boolean isEmpty(){
     int count = 0;
-    for (int x = 0; x < data.length; x++){
-      if (data[x] == null){
+    for (int i = 0; i < data.length; i++){
+      if (data[i] != null){
         count++;
       }
     }
-    return count == data.length;
+    return count;
   }
-  /*
+
+  public boolean isEmpty(){
+    return size() == 0;
+  }
+
   public boolean add(String a){
-    if (data[data.length - 1] != null){
-      resize();
-    }
-    for (int x = 0; x < data.length; x++){
-      if (data[x] == null){
-        data[x] = a;
-        x = data.length;
+    for (int i = 0; i < data.length; i++){
+      if (data[i] == null){
+        data[i] = a;
+        return true;
       }
     }
     return true;
   }
-  */
-  public String get(int index){
-    if (index < 0 || index >= size()){
-      return null;
-    }
-    return data[index];
-  }
-
-  public String set(int index, String element){
-    if (index < 0 || index >= size()){
-      throw new UnsupportedOperationException();
-    }
-    String oldElement = data[index];
-    data[index] = element;
-    return oldElement;
-  }
 
   public String toString(){
-    String g = "";
-    String f = "[";
-    for (int x = 0; x < data.length; x++){
-      if (x == data.length - 1){
-        f = f + data[x];
-      }
-      else{
-        f = f + data[x] + ", ";
+    String a = "[";
+    for (int i = 0; i < data.length; i++){
+      if (data[i] != null){
+        a += data[i];
+        a += ", ";
       }
     }
-    f = f + "]";
-    for (int x = 0; x < f.length(); x++){
-      if (f.charAt(x) != '"'){
-        g = g + f.charAt(x);
-      }
-
+    if (a.length() > 1){
+      a = a.substring(0, a.length()-2);
     }
-    return g;
+    a += "]";
+    return a;
   }
 
-  private void resize(){
+  public String get(int a){
+    if (a < 0 || a >= size()){
+      System.out.println("Index is out of range");
+      return null;
+    }
+    return data[a];
+  }
+
+  public String set(int a, String b){
+    if (a < 0 || a >= size()){
+      System.out.println("Index is out of range");
+      return null;
+    }
+    String old = data[a];
+    data[a] = b;
+    return old;
+  }
+
+  // phase 2
+
+  public void resize(){
     String[] newData;
-    int newLength = 2 * size;
-    newData = new String[newLength];
-    for (int x = 0; x < data.length; x++){
-      newData[x] = data[x];
+    size = size * 2;
+    newData = new String[size];
+    for (int i = 0; i < data.length; i++){
+      newData[i] = data[i];
     }
     data = newData;
-    size = newLength;
   }
 
+  // phase 3
+
   public boolean contains(String target){
-    return indexOf(target) >= 0;
+    for (int i = 0; i < data.length; i++){
+      if (data[i] == target){
+        return true;
+      }
+    }
+    return false;
   }
 
   public int indexOf(String target){
-    for (int x = 0; x < data.length; x++){
-      if (data[x] == target){
-        return x;
+    for (int i = 0; i < data.length; i++){
+      if (data[i] == target){
+        return i;
       }
     }
     return -1;
   }
 
   public int lastIndexOf(String target){
-
-    for (int x = 0; x < data.length; x++){
-      if (data[data.length - x - 1] == target){
-        return data.length - x - 1;
+    for (int i = data.length; i >= 0; i--){
+      if (data[i] == target){
+        return i;
       }
     }
     return -1;
   }
 
-  public void add(int index, String element){
-    if (data[data.length - 1] != null){
-      resize();
+  public void add(int a, String b){
+    if (a < 0 || a >= size()){
+      System.out.println("Index is out of range");
     }
-    String[] dataShift;
-    dataShift = new String[size];
-    for (int x = 0; x <  data.length; x++){
-      if (x < index){
-        dataShift[x] = data[x];
+    String[] newData;
+    newData = new String[size + 1];
+    for (int i = 0; i < newData.length; i++){
+      if (i < a){
+        newData[i] = data[i];
       }
-      if (x == index){
-        dataShift[x] = element;
+      if (i == a){
+        newData[i] = b;
       }
-      if (x > index){
-        dataShift[x] = data[x - 1];
+      if (i > a){
+        newData[i] = data[i - 1];
       }
     }
-    data = dataShift;
+    data = newData;
   }
 
-  public String remove(int index){
-    if (index < 0 || index >= size()){
+  public String remove(int a){
+    if (a < 0 || a >= size()){
+      System.out.println("Index is out of range");
       return null;
     }
-    String[] dataShift;
-    dataShift = new String[size];
-    for (int x = 0; x < data.length - 1; x++){
-      if (x < index){
-        dataShift[x] = data[x];
+    String[] newData;
+    newData = new String[size];
+    String removed = "";
+    for (int i = 0; i < newData.length; i++){
+      if (i < a){
+        newData[i] = data[i];
       }
-      else{
-        dataShift[x] = data[x + 1];
+      if (i == a){
+        removed = data[i];
+        newData[i] = data[i + 1];
+      }
+      if (i > a){
+        newData[i] = data[i + 1];
       }
     }
-    dataShift[data.length - 1] = null;
-    data = dataShift;
-    return data[index];
+    data = newData;
+    return removed;
   }
 
-  public boolean remove(String element){
-    if (indexOf(element) >= 0){
-      remove(indexOf(element));
-      return true;
+  public boolean remove(String a){
+    for (int x = 0; x < data.length; x++){
+      if (data[x].equals(a)){
+        String[] newData;
+        newData = new String[size];
+        for (int i = 0; i < newData.length; i++){
+          if (i < x){
+            newData[i] = data[i];
+          }
+          if (i == x){
+            newData[i] = data[i + 1];
+          }
+          if (i > x){
+            newData[i] = data[i + 1];
+          }
+        }
+        data = newData;
+        return true;
+      }
     }
     return false;
   }
-
 }
