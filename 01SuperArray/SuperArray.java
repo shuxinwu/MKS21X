@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class SuperArray{
   private String[] data;
   private int size;
@@ -61,16 +63,16 @@ public class SuperArray{
 
   public String get(int a){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
-      return null;
+      throw new IndexOutOfBoundsException();
+      //      return null;
     }
     return data[a];
   }
 
   public String set(int a, String b){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
-      return null;
+      throw new UnsupportedOperationException();
+      //      return null;
     }
     String old = data[a];
     data[a] = b;
@@ -120,7 +122,7 @@ public class SuperArray{
 
   public void add(int a, String b){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
+      throw new IndexOutOfBoundsException();
     }
     String[] newData;
     newData = new String[size + 1];
@@ -140,8 +142,8 @@ public class SuperArray{
 
   public String remove(int a){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
-      return null;
+      throw new IndexOutOfBoundsException();
+      //      return null;
     }
     String[] newData;
     newData = new String[size];
