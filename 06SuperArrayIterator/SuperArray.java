@@ -7,7 +7,7 @@ public class SuperArray implements Iterable<String>{
 
   public SuperArray(){
     size = 10;
-    data = new String[10];
+    data = new String[size];
   }
 
   public SuperArray(int startingCapacity){
@@ -64,16 +64,14 @@ public class SuperArray implements Iterable<String>{
 
   public String get(int a){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
-      return null;
+      throw new IndexOutOfBoundsException();
     }
     return data[a];
   }
 
   public String set(int a, String b){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
-      return null;
+      throw new UnsupportedOperationException();
     }
     String old = data[a];
     data[a] = b;
@@ -123,7 +121,7 @@ public class SuperArray implements Iterable<String>{
 
   public void add(int a, String b){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
+      throw new IndexOutOfBoundsException();
     }
     String[] newData;
     size += 1;
@@ -144,8 +142,7 @@ public class SuperArray implements Iterable<String>{
 
   public String remove(int a){
     if (a < 0 || a >= size()){
-      System.out.println("Index is out of range");
-      return null;
+      throw new IndexOutOfBoundsException();
     }
     String[] newData;
     newData = new String[size];
