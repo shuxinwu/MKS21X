@@ -4,9 +4,9 @@ public class SuperArrayIterator implements Iterator<String>{
   private SuperArray a;
   private int current;
 
-  public SuperArrayIterator(SuperArray b){
+  public SuperArrayIterator(SuperArray b, int c){
     a = b;
-    current = 0;
+    current = c;
   }
 
   // true if iteration has more elements
