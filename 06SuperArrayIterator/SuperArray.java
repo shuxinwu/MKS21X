@@ -71,7 +71,7 @@ public class SuperArray implements Iterable<String>{
 
   public String set(int a, String b){
     if (a < 0 || a >= size()){
-      throw new UnsupportedOperationException();
+      throw new IndexOutOfBoundsException();
     }
     String old = data[a];
     data[a] = b;
