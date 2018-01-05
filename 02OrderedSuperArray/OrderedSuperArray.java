@@ -24,15 +24,15 @@ public class OrderedSuperArray extends SuperArray{
     super.add(index, element);
   }
 
-    private int findIndex(String element){
-      int index = super.getData().length - 1;
-      for (int x = 0; x < super.getData().length; x++){
-        if (element.compareTo(super.getData()[x]) >= 0){
-          index = x;
-        }
+  private int findIndex(String element){
+    int index = super.getData().length - 1;
+    for (int x = 0; x < super.getData().length; x++){
+      if (element.compareTo(super.getData()[x]) >= 0){
+        index = x;
       }
-      return index;
     }
+    return index;
+  }
 
   private int findIndexBinary(String element){
     int index = super.getData().length / 2;
@@ -49,5 +49,4 @@ public class OrderedSuperArray extends SuperArray{
     }
     return index;
   }
-
 }
